@@ -1,0 +1,20 @@
+<div class="container-subpage">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-fullwidth">
+    <input class="mdl-textfield__input" type="text" id="nomeponto" ng-model="nomeponto">
+    <label class="mdl-textfield__label" for="nomeponto">Nome Ponto</label>
+  </div>
+  <div></div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" readonly type="text" id="latitude" ng-model="latitude">
+    <label class="mdl-textfield__label" for="latitude">Latitude</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" readonly type="text" id="longitude" ng-model="longitude">
+    <label class="mdl-textfield__label" for="longitude">Longitude</label>
+  </div>
+  <div></div>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="sendRequest()">
+    {{descbotao}}
+  </button>
+  <div id="mapa-leitura-ponto" class="container-mapa"></div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container-subpage">
+  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin:0 auto;">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Responsável</th>
+        <th class="mdl-data-table__cell--non-numeric">Contato</th>
+        <th class="mdl-data-table__cell--non-numeric">Principal</th>
+        <th style="text-align:center;">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="contato in contatos">
+        <td class="mdl-data-table__cell--non-numeric">{{contato.responsavel}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{contato.telefone}}</td>
+        <td class="mdl-data-table__cell--non-numeric">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="principal{{contato.id}}">
+            <input type="checkbox" id="principal{{contato.id}}" class="mdl-checkbox__input" ng-disabled="temPrincipal && !contato.principal" ng-checked="{{contato.principal}}" ng-model="contato.principal" ng-click="setPrincipal(contato)">
+          </label>
+        </td>
+        <td>
+          <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="alterar(contato)">
+            <i id="ttedt{{contato.id}}" class="material-icons">mode_edit</i>
+            <div class="mdl-tooltip" data-mdl-for="ttedt{{contato.id}}">Alterar</div>
+          </button>
+          <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="setIdForDelete(contato.id)">
+            <i id="ttdel{{contato.id}}" class="material-icons">delete</i>
+            <div class="mdl-tooltip" data-mdl-for="ttdel{{contato.id}}">Excluir</div>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="mdl-card mdl-shadow--2dp" style="margin:15px auto;">
+    <div style="padding:16px;">
+      <form name="formAbrigoContato">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="responsavel" maxlength="100" ng-model="contato.responsavel">
+          <label class="mdl-textfield__label" for="responsavel">Responsável</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="telefone" maxlength="20" ng-model="contato.telefone">
+          <label class="mdl-textfield__label" for="telefone">Telefone</label>
+        </div>
+      </form>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="sendRequest()">{{descbotao}}</a>
+    </div>
+  </div>
+  <span ng-include="'pages/include/exclusao-dialog.html'"></span>
+</div>

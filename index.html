@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="PainelAdm" ng-controller="mainCtrl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Administração</title>
+  <link rel="stylesheet" type="text/css" href="css/material.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+</head>
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">{{Page.getTitle()}}</span>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <header class="drawer-header-menu">
+        <span class="title">Administração</span>
+        <div class="container-user-menu">
+          <span class="user-name">Bruno Pasqualini</span>
+          <div class="mdl-layout-spacer"></div>
+          <button id="user-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_drop_down</i>
+            <span class="visuallyhidden">Accounts</span>
+            <span class="mdl-button__ripple-container">
+              <span class="mdl-ripple is-animating" style="width: 92.5097px; height: 92.5097px; transform: translate(-50%, -50%) translate(15px, 16px);"></span>
+            </span>
+          </button>
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="user-menu">
+            <li class="mdl-menu__item">Configurações</li>
+            <li class="mdl-menu__item">Sair</li>
+          </ul>
+        </div>
+      </header>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="#leiturapontos">Leitura</a>
+        <a class="mdl-navigation__link" href="#abrigos">Abrigos</a>
+        <a class="mdl-navigation__link" href="#doacoes">Doações</a>
+        <a class="mdl-navigation__link" href="#contatos">Contatos Gerais</a>
+        <a class="mdl-navigation__link" href="#usuarios">Usuários</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content" ng-view></div>
+      <div class="page-content-loading" style="display: none;">
+        <div class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div>
+      </div>
+    </main>
+  </div>
+  <div id="toast-container" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div><button class="mdl-snackbar__action" type="button"></button>
+  </div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVYpS01xDJPVL2oCLBQ2RTlZKxB9qljNw"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/angular.js"></script>
+  <script src="js/material.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controller/abrigos-ctrl.js"></script>
+  <script src="js/controller/contatos-ctrl.js"></script>
+  <script src="js/controller/doacoes-ctrl.js"></script>
+  <script src="js/controller/leitura-pontos-ctrl.js"></script>
+  <script src="js/controller/usuarios-ctrl.js"></script>
+</body>
+</html>
