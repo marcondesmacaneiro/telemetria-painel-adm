@@ -1,0 +1,80 @@
+<div>
+  <div class="inline-card" ng-repeat="contato in contatos">
+    <div class="mdl-card mdl-shadow--2dp" ng-controller="contatoCtrl">
+      <div class="mdl-card__title image bottom">
+        <img class="mdl-typography--text-center" style="width:150px;" ng-src="{{contato.banner}}">
+        <div class="title">
+          {{contato.descricao}}
+        </div>
+      </div>
+      <div>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Contato</th>
+              <th style="text-align:center;">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="telefone in contato.telefones">
+              <td class="mdl-data-table__cell--non-numeric">{{telefone.numero}}</td>
+              <td style="text-align: center;">
+                <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="alteraTelefone(telefone);">
+                  <i id="ttedt{{$parent.$index}}{{$index}}" class="material-icons">mode_edit</i>
+                  <div class="mdl-tooltip" data-mdl-for="ttedt{{$parent.$index}}{{$index}}">Alterar</div>
+                </button>
+                <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="setObjectForDelete(telefone);">
+                  <i id="ttdel{{$parent.$index}}{{$index}}" class="material-icons">delete</i>
+                  <div class="mdl-tooltip" data-mdl-for="ttdel{{$parent.$index}}{{$index}}">Excluir</div>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mdl-card__menu">
+        <button id="menu-contato{{$index}}" class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-contato{{$index}}">
+          <li class="mdl-menu__item" ng-click="setContatoForUpdate(contato);">Alterar</li>
+          <li class="mdl-menu__item" ng-click="setObjectForDelete(contato);">Excluir</li>
+        </ul>
+      </div>
+      <div>
+        <div style="padding:16px;">
+          <form name="formTelContatoGeral">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="telefone" maxlength="100" ng-model="telefone.numero">
+              <label class="mdl-textfield__label" for="telefone">Telefone</label>
+            </div>
+          </form>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="sendRequest(contato);">{{descbotao}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span ng-include="'pages/include/exclusao-dialog.html'"></span>
+  <button href="#abrigo" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect floating-button" ng-click="mostraTelaCadastro();">
+    <i class="material-icons">add</i>
+  </button>
+  <dialog class="mdl-dialog" id="inc-contato-dialog">
+    <h4 class="mdl-dialog__title">{{titledialog}}</h4>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="descricao" maxlength="200" ng-model="contato.descricao">
+        <label class="mdl-textfield__label" for="descricao">Descrição</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="banner" maxlength="300" ng-model="contato.banner">
+        <label class="mdl-textfield__label" for="banner">Endereço Banner</label>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">Fechar</button>
+      <button type="button" class="mdl-button close" ng-click="sendRequest();">Confirmar</button>
+    </div>
+  </dialog>
+</div>

@@ -60,7 +60,7 @@ function ($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi) {
     if(isCadastro){
       ApiRequest.insere(AbrigoApi.getUrl(abrigoId), $scope.abrigo).then(function(){
         window.location = '#abrigos';
-        showMessage('Abrigo Inserido');
+        showMessage('Abrigo inserido');
       });
     }else{
       ApiRequest.altera(AbrigoApi.getUrl(abrigoId), $scope.abrigo).then(function(){
@@ -79,7 +79,7 @@ function ($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi) {
       var id = abrigoId ? parseInt(abrigoId) : '';
       return "http://localhost:8080/api/abrigo/" + id;
     }
-  }
+  };
 });
 
 app.controller('abrigoContatoCtrl', ['$scope', '$routeParams', '$timeout', 'Page', 'ApiRequest', 'AbrigoApi', 'AbrigoContatoApi',
@@ -126,12 +126,12 @@ function($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi, AbrigoCont
     if(isAlteracao){
       ApiRequest.altera(AbrigoContatoApi.getUrl(idAbrigo) + $scope.contato.id, $scope.contato).then(function(){
         isAlteracao = false;
-        callBackRequest('Contato Alterado');
+        callBackRequest('Contato alterado');
       });
     }else{
       delete $scope.contato.id;
       ApiRequest.insere(AbrigoContatoApi.getUrl(idAbrigo), $scope.contato).then(function(){
-        callBackRequest('Contato Inserido');
+        callBackRequest('Contato inserido');
       });
     }
   };
@@ -173,5 +173,5 @@ function($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi, AbrigoCont
     getUrl: function(abrigoId){
       return "http://localhost:8080/api/abrigo/" + abrigoId + "/contato/";
     }
-  }
+  };
 });

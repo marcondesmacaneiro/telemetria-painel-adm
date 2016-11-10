@@ -77,11 +77,12 @@ i{
 .mdl-card, .mdl-card * {
   z-index: auto;
 }
-.mdl-card__title__image {
+.mdl-card__title.image {
   padding: 0;
   position: relative;
+  display: block;
 }
-.mdl-card__title__image__desc__container {
+.mdl-card__title__image__container {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -94,11 +95,22 @@ i{
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.23)
 }
-.mdl-card__title__image__desc__container > .title{
+.mdl-card__title__image__container > .title{
   font-size: 1.5em;
 }
-.mdl-card__title__image__desc__container > .subtitle{
+.mdl-card__title__image__container > .subtitle{
   font-size: 1em;
+}
+.mdl-card__title.image.bottom{
+  text-align: center;
+}
+.mdl-card__title.image.bottom .title{
+  color: white;
+  padding: 2px 0px;
+  background-color: rgb(66, 66, 66);
+}
+.mdl-card__title.image.bottom img {
+  margin: 2px 0px;
 }
 .img-responsive {
   max-width: 100%;

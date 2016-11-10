@@ -14,15 +14,15 @@
         <td class="mdl-data-table__cell--non-numeric">{{contato.telefone}}</td>
         <td class="mdl-data-table__cell--non-numeric">
           <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="principal{{contato.id}}">
-            <input type="checkbox" id="principal{{contato.id}}" class="mdl-checkbox__input" ng-disabled="temPrincipal && !contato.principal" ng-checked="{{contato.principal}}" ng-model="contato.principal" ng-click="setPrincipal(contato)">
+            <input type="checkbox" id="principal{{contato.id}}" class="mdl-checkbox__input" ng-disabled="temPrincipal && !contato.principal" ng-checked="{{contato.principal}}" ng-model="contato.principal" ng-click="setPrincipal(contato);">
           </label>
         </td>
-        <td>
-          <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="alterar(contato)">
+        <td style="text-align:center;">
+          <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="alterar(contato);">
             <i id="ttedt{{contato.id}}" class="material-icons">mode_edit</i>
             <div class="mdl-tooltip" data-mdl-for="ttedt{{contato.id}}">Alterar</div>
           </button>
-          <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="setIdForDelete(contato.id)">
+          <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="setIdForDelete(contato.id);">
             <i id="ttdel{{contato.id}}" class="material-icons">delete</i>
             <div class="mdl-tooltip" data-mdl-for="ttdel{{contato.id}}">Excluir</div>
           </button>
@@ -44,7 +44,7 @@
       </form>
     </div>
     <div class="mdl-card__actions mdl-card--border">
-      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="sendRequest()">{{descbotao}}</a>
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="sendRequest();">{{descbotao}}</a>
     </div>
   </div>
   <span ng-include="'pages/include/exclusao-dialog.html'"></span>
