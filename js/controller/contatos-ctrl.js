@@ -31,7 +31,7 @@ app.controller("contatosCtrl", ['$scope', 'Page', 'ApiRequest', 'ContatosApi', f
     }
   };
   $scope.setContatoForUpdate = function(contato){
-    $scope.contato = contato;
+    $scope.contato = angular.copy(contato);
     alteraTituloDialog(false);
     showDialog('inc-contato');
     atualizaLabelCampos();
