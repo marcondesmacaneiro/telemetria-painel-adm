@@ -19,9 +19,8 @@ app.controller("leituraPontosCtrl", ['$scope', 'Page', function ($scope, Page) {
   }
 }]);
 app.controller("leituraPontoCtrl", ['$scope', '$routeParams', 'Page', function ($scope, $routeParams, Page) {
-  var isCadastro   = typeof $routeParams.id == 'undefined';
-  $scope.descbotao = isCadastro ? 'Cadastrar' : 'Alterar';
-  var pontoId      = parseInt($routeParams.id);
+  $scope.isCadastro = typeof $routeParams.id == 'undefined';
+  var pontoId       = parseInt($routeParams.id);
   //se tiver um id e não for um número
   if(isNaN(pontoId) && typeof $routeParams.id !== 'undefined'){
     window.location = '#leitura';
@@ -35,8 +34,8 @@ app.controller("leituraPontoCtrl", ['$scope', '$routeParams', 'Page', function (
     $scope.longitude = lng;
     $scope.$apply();
     atualizaLabelCampos();
-  }, isCadastro);
+  }, $scope.isCadastro);
   $scope.sendRequest = function(){
-    //TODO: Utilizar variável isCadastro
+    //TODO: Utilizar variável $scope.isCadastro
   };
 }]);

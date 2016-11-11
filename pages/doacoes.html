@@ -1,0 +1,34 @@
+<div>
+  <div class="inline-card" ng-repeat="doacao in doacoes">
+    <div class="mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <span style="margin-right: 2px;">
+          <i class="material-icons" ng-show="doacao.tipo == 1">home</i>
+          <i class="material-icons" ng-show="doacao.tipo == 2">person</i>
+        </span>
+        <h2 class="mdl-card__title-text">{{doacao.nome}}</h2>
+      </div>
+      <div class="card-divider"></div>
+      <div class="mdl-card__supporting-text" style="min-height:54px;">
+        {{doacao.endereco}}
+      </div>
+      <div class="card-divider"></div>
+      <div class="mdl-card__supporting-text" style="min-height:54px;">
+        <span style="white-space: pre;">{{doacao.informacoes}}</span>
+      </div>
+      <div class="mdl-card__menu">
+        <button id="menu-abrigo{{$index}}" class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-abrigo{{$index}}">
+          <li><a ng-click="DoacaoObjectRoute.set(doacao);" class="mdl-menu__item" href="#doacao">Alterar</a></li>
+          <li class="mdl-menu__item" ng-click="setObjectForDelete(doacao);">Excluir</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <span ng-include="'pages/include/exclusao-dialog.html'"></span>
+  <a ng-click="DoacaoObjectRoute.reset();" href="#doacao" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect floating-button">
+    <i class="material-icons">add</i>
+  </a>
+</div>

@@ -112,6 +112,9 @@ i{
 .mdl-card__title.image.bottom img {
   margin: 2px 0px;
 }
+.card-divider {
+  border-top: 1px solid rgba(0,0,0,.1);
+}
 .img-responsive {
   max-width: 100%;
 }
@@ -121,6 +124,7 @@ i{
 }
 .inline-card{
   display: inline-block;
+  float: left;
   width: auto;
   margin-top: 20px;
   margin-left: 20px;

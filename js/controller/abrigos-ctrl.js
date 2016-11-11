@@ -29,9 +29,8 @@ function ($scope, $timeout, Page, ApiRequest, AbrigoApi) {
 
 app.controller("abrigoCtrl", ['$scope', '$routeParams', '$timeout', 'Page', 'ApiRequest', 'AbrigoApi',
 function ($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi) {
-  var isCadastro   = typeof $routeParams.id == 'undefined';
-  $scope.descbotao = isCadastro ? 'Cadastrar' : 'Alterar';
-  var abrigoId     = parseInt($routeParams.id);
+  $scope.isCadastro = typeof $routeParams.id == 'undefined';
+  var abrigoId      = parseInt($routeParams.id);
   //se tiver um id e não for um número
   if(isNaN(abrigoId) && typeof $routeParams.id !== 'undefined'){
     window.location = '#abrigos';
@@ -46,8 +45,8 @@ function ($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi) {
       $scope.abrigo.localizacao = JSON.stringify($scope.localizacao);
       atualizaLabelCampos();
     });
-  }, isCadastro);
-  if(!isCadastro){
+  }, $scope.isCadastro);
+  if(!$scope.isCadastro){
     ApiRequest.busca(AbrigoApi.getUrl(abrigoId)).then(function(data){
       $scope.abrigo = data;
       Page.setTitle('Abrigo - ' + data.nome);
@@ -57,7 +56,7 @@ function ($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi) {
     });
   }
   $scope.sendRequest = function(){
-    if(isCadastro){
+    if($scope.isCadastro){
       ApiRequest.insere(AbrigoApi.getUrl(abrigoId), $scope.abrigo).then(function(){
         window.location = '#abrigos';
         showMessage('Abrigo inserido');

@@ -1,21 +1,20 @@
 var app = angular.module("PainelAdm");
 app.controller("contatosCtrl", ['$scope', 'Page', 'ApiRequest', 'ContatosApi', function ($scope, Page, ApiRequest, ContatosApi) {
   Page.setTitle('Contatos Gerais');
-  var isCadastro     = true;
+  $scope.isCadastro  = true;
   $scope.objDelete   = null;
   $scope.contato     = {};
   $scope.contatos    = [];
   $scope.excDialogId = 'exc-contato';
-  alteraTituloDialog(true);
   refresh();
 
   $scope.mostraTelaCadastro = function(){
     $scope.contato = {};
-    alteraTituloDialog(true);
+    $scope.isCadastro  = true;
     showDialog('inc-contato');
   };
   $scope.sendRequest = function(){
-    if(isCadastro){
+    if($scope.isCadastro){
       ApiRequest.insere(ContatosApi.getUrl(), $scope.contato).then(function(){
         refresh();
         showMessage('Contato inserido');
@@ -32,7 +31,7 @@ app.controller("contatosCtrl", ['$scope', 'Page', 'ApiRequest', 'ContatosApi', f
   };
   $scope.setContatoForUpdate = function(contato){
     $scope.contato = angular.copy(contato);
-    alteraTituloDialog(false);
+    $scope.isCadastro = false;
     showDialog('inc-contato');
     atualizaLabelCampos();
   };
@@ -63,10 +62,6 @@ app.controller("contatosCtrl", ['$scope', 'Page', 'ApiRequest', 'ContatosApi', f
       $scope.contatos = contatos;
     });
   }
-  function alteraTituloDialog(cadastro){
-    isCadastro         = cadastro;
-    $scope.titledialog = cadastro ? 'Cadastrar' : 'Alterar';
-  }
 }])
 .factory('ContatosApi', function(){
   return {
@@ -80,14 +75,13 @@ app.controller("contatosCtrl", ['$scope', 'Page', 'ApiRequest', 'ContatosApi', f
   };
 });
 app.controller('contatoCtrl', ['$scope', 'ApiRequest', 'ContatoTelefoneApi', function($scope, ApiRequest, ContatoTelefoneApi){
-  var isNovoTelefone = true;
-  $scope.telefone    = {};
-  $scope.telefones   = [];
-  alteraTituloTelefone(true);
+  $scope.isNovoTelefone = true;
+  $scope.telefone       = {};
+  $scope.telefones      = [];
 
   $scope.sendRequest = function(contato){
     if(isEmpty($scope.telefone.numero)) return;
-    if(isNovoTelefone){
+    if($scope.isNovoTelefone){
       ApiRequest.insere(ContatoTelefoneApi.getUrl(), {
         numero: $scope.telefone.numero, contatoGeral: contato._links.self.href
       }).then(function(){
@@ -104,20 +98,15 @@ app.controller('contatoCtrl', ['$scope', 'ApiRequest', 'ContatoTelefoneApi', fun
         $scope.telefone = {};
         $scope.formTelContatoGeral.$setPristine();
         showMessage('Telefone alterado');
-        alteraTituloTelefone(true);
+        $scope.isNovoTelefone = true;
       });
     }
   };
   $scope.alteraTelefone = function(telefone){
     $scope.telefone = angular.copy(telefone);
     atualizaLabelCampos();
-    alteraTituloTelefone(false);
+    $scope.isNovoTelefone = false;
   };
-
-  function alteraTituloTelefone(novoTelefone){
-    isNovoTelefone   = novoTelefone;
-    $scope.descbotao = novoTelefone ? 'Cadastrar' : 'Alterar';
-  }
 }])
 .factory('ContatoTelefoneApi', function(){
   return {

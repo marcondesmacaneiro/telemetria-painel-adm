@@ -51,7 +51,7 @@
           </form>
         </div>
         <div class="mdl-card__actions mdl-card--border">
-          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="sendRequest(contato);">{{descbotao}}</a>
+          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="sendRequest(contato);">{{isNovoTelefone ? 'Cadastrar' : 'Alterar'}}</a>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
     <i class="material-icons">add</i>
   </button>
   <dialog class="mdl-dialog" id="inc-contato-dialog">
-    <h4 class="mdl-dialog__title">{{titledialog}}</h4>
+    <h4 class="mdl-dialog__title">{{isCadastro ? 'Cadastrar' : 'Alterar'}}</h4>
     <div class="mdl-dialog__content">
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" id="descricao" maxlength="200" ng-model="contato.descricao">

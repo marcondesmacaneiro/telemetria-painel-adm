@@ -21,6 +21,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller  : 'doacoesCtrl',
     templateUrl : "pages/doacoes.html"
   })
+  .when("/doacao/", {
+    controller  : 'doacaoCtrl',
+    templateUrl : "pages/doacao.html"
+  })
   .when("/contatos", {
     controller  : 'contatosCtrl',
     templateUrl : "pages/contatos.html"
