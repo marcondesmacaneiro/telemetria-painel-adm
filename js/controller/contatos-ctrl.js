@@ -68,9 +68,8 @@ app.controller("contatosCtrl", ['$scope', 'Page', 'ApiRequest', 'ContatosApi', f
     getUrlAll: function(){
       return "http://localhost:8080/contatogeral/search/findAllByOrderByIdAsc/";
     },
-    getUrl: function(contatoId){
-      contatoId = parseInt(contatoId) ? parseInt(contatoId) : '';
-      return "http://localhost:8080/contatogeral/" + contatoId;
+    getUrl: function(){
+      return "http://localhost:8080/contatogeral/";
     }
   };
 });

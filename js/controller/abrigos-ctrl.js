@@ -26,7 +26,6 @@ function ($scope, $timeout, Page, ApiRequest, AbrigoApi) {
     });
   }
 }]);
-
 app.controller("abrigoCtrl", ['$scope', '$routeParams', '$timeout', 'Page', 'ApiRequest', 'AbrigoApi',
 function ($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi) {
   $scope.isCadastro = typeof $routeParams.id == 'undefined';
@@ -80,7 +79,6 @@ function ($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi) {
     }
   };
 });
-
 app.controller('abrigoContatoCtrl', ['$scope', '$routeParams', '$timeout', 'Page', 'ApiRequest', 'AbrigoApi', 'AbrigoContatoApi',
 function($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi, AbrigoContatoApi){
   var idAbrigo = parseInt($routeParams.id);

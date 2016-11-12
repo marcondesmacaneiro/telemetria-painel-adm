@@ -1,7 +1,7 @@
 var app = angular.module("PainelAdm", ["ngRoute"]);
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider
-  .when("/leituraponto/:id?", {
+  .when("/leituraponto/", {
     controller  : 'leituraPontoCtrl',
     templateUrl : "pages/leitura-ponto.html"
   })
@@ -74,7 +74,21 @@ app.controller('mainCtrl', ['$scope', 'Page', function($scope, Page){
       return $http.delete(url);
     }
   }
-}]);
+}])
+.factory('ObjectHandleRoute', function(){
+  var _object = null;
+  return {
+    get: function(){
+      return _object;
+    },
+    set: function(object){
+      _object = object;
+    },
+    reset: function(){
+      _object = null;
+    }
+  };
+});
 function criaMapa(idContainer, callbackMarker, useGeolocation){
   var defaultPosition = {lat: -57.213973, lng: -59.638101};
   var map = new google.maps.Map(document.getElementById(idContainer), {

@@ -1,10 +1,10 @@
 var app = angular.module("PainelAdm");
-app.controller("doacoesCtrl", ['$scope', 'Page', 'ApiRequest', 'DoacoesApi', 'DoacaoObjectRoute',
-function ($scope, Page, ApiRequest, DoacoesApi, DoacaoObjectRoute) {
+app.controller("doacoesCtrl", ['$scope', 'Page', 'ApiRequest', 'DoacoesApi', 'ObjectHandleRoute',
+function ($scope, Page, ApiRequest, DoacoesApi, ObjectHandleRoute) {
   Page.setTitle('Doações');
-  $scope.doacoes = [];
+  $scope.doacoes     = [];
   $scope.excDialogId = 'exc-doacao';
-  $scope.DoacaoObjectRoute = DoacaoObjectRoute;
+  $scope.DoacaoObjectRoute = ObjectHandleRoute;
 
   $scope.setObjectForDelete = function(doacao){
     $scope.objDelete = doacao;
@@ -24,13 +24,22 @@ function ($scope, Page, ApiRequest, DoacoesApi, DoacaoObjectRoute) {
       atualizaElementos();
     });
   }
-}]);
-app.controller("doacaoCtrl", ['$scope', '$timeout', 'Page', 'ApiRequest', 'DoacoesApi', 'DoacaoObjectRoute',
-function ($scope, $timeout, Page, ApiRequest, DoacoesApi, DoacaoObjectRoute) {
-  $scope.isCadastro  = DoacaoObjectRoute.get() == null;
-  $scope.doacao      = $scope.isCadastro ? {tipo: 1, nome: ''} : DoacaoObjectRoute.get();
+}])
+.factory('DoacoesApi', function(){
+  return {
+    getUrlAll: function(){
+      return "http://localhost:8080/doacao/search/findAllByOrderByIdAsc/";
+    },
+    getUrl: function(){
+      return "http://localhost:8080/doacao/";
+    }
+  };
+});
+app.controller("doacaoCtrl", ['$scope', '$timeout', 'Page', 'ApiRequest', 'DoacoesApi', 'ObjectHandleRoute',
+function ($scope, $timeout, Page, ApiRequest, DoacoesApi, ObjectHandleRoute) {
+  $scope.isCadastro  = ObjectHandleRoute.get() == null;
+  $scope.doacao      = $scope.isCadastro ? {tipo: 1, nome: ''} : ObjectHandleRoute.get();
   $scope.localizacao = {};
-  $scope.DoacaoObjectRoute = DoacaoObjectRoute;
 
   var mapa = criaMapa('mapa-doacao', function(lat, lng){
     $timeout(function () {
@@ -66,29 +75,4 @@ function ($scope, $timeout, Page, ApiRequest, DoacoesApi, DoacaoObjectRoute) {
   $scope.$watch('doacao.nome', function() {
     Page.setTitle('Doação - ' + $scope.doacao.nome);
   });
-}])
-.factory('DoacaoObjectRoute', function(){
-  var _doacao = null;
-  return {
-    get: function(){
-      return _doacao;
-    },
-    set: function(doacao){
-      _doacao = doacao;
-    },
-    reset: function(){
-      _doacao = null;
-    }
-  };
-})
-.factory('DoacoesApi', function(){
-  return {
-    getUrlAll: function(){
-      return "http://localhost:8080/doacao/search/findAllByOrderByIdAsc/";
-    },
-    getUrl: function(doacaoId){
-      doacaoId = parseInt(doacaoId) ? parseInt(doacaoId) : '';
-      return "http://localhost:8080/doacao/" + doacaoId;
-    }
-  };
-});
+}]);

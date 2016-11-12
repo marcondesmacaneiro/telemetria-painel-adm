@@ -1,45 +1,44 @@
 <div>
-  <div class="mdl-card mdl-shadow--2dp inline-card">
+  <div class="mdl-card mdl-shadow--2dp inline-card" ng-repeat="ponto in pontos">
     <div class="mdl-card__title mdl-card--expand">
-      <h2 class="mdl-card__title-text">Ponte Dom Tito Buss</h2>
-      <button id="menu-ponto-leitura" class="mdl-button mdl-js-button mdl-button--icon">
+      <h2 class="mdl-card__title-text">{{ponto.nome}}</h2>
+      <div class="mdl-layout-spacer"></div>
+      <button id="menu-ponto-leitura{{$index}}" class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">more_vert</i>
       </button>
-      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-ponto-leitura">
-        <li><a class="mdl-menu__item" href="#leituraponto/1">Alterar</a></li>
-        <li class="mdl-menu__item" ng-click="setIdForDelete();">Excluir</li>
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-ponto-leitura{{$index}}">
+        <li><a ng-click="LeituraPontoObjectRoute.set(ponto);" class="mdl-menu__item" href="#leituraponto/">Alterar</a></li>
+        <li class="mdl-menu__item" ng-click="setObjectForDelete(ponto);">Excluir</li>
       </ul>
     </div>
-    <div class="mdl-card__supporting-text">
-      Rio do Sul - Canta Galo
-    </div>
+    <div class="mdl-card__supporting-text">{{ponto.endereco}}</div>
     <table class="mdl-data-table mdl-js-data-table">
       <thead>
         <tr>
-          <th>Ativo</th>
-          <th>Manual</th>
-          <th>Sensor</th>
+          <th class="mdl-data-table__cell--non-numeric">Ativo</th>
+          <th class="mdl-data-table__cell--non-numeric">Manual</th>
+          <th class="mdl-data-table__cell--non-numeric">Sensor</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr ng-repeat="sensor in ponto.sensores">
           <td>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="ativo">
-              <input type="checkbox" id="ativo" class="mdl-checkbox__input">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="ativo{{$parent.$index}}{{$index}}">
+              <input type="checkbox" id="ativo{{$parent.$index}}{{$index}}" class="mdl-checkbox__input" ng-model="sensor.ativo" ng-click="alteraSensor(ponto, sensor);" ng-checked="sensor.ativo">
             </label>
           </td>
           <td>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="manual">
-              <input type="checkbox" id="manual" class="mdl-checkbox__input">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="manual{{$parent.$index}}{{$index}}">
+              <input type="checkbox" id="manual{{$parent.$index}}{{$index}}" class="mdl-checkbox__input" ng-disabled="!sensor.ativo" ng-model="sensor.manual" ng-click="alteraSensor(ponto, sensor);" ng-checked="sensor.manual">
             </label>
           </td>
-          <td>Nível do Rio</td>
+          <td class="mdl-data-table__cell--non-numeric">{{sensor.nomeSensor}}</td>
         </tr>
       </tbody>
     </table>
   </div>
   <span ng-include="'pages/include/exclusao-dialog.html'"></span>
-  <a href="#leituraponto" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect floating-button">
+  <a ng-click="LeituraPontoObjectRoute.reset();" href="#leituraponto" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect floating-button">
     <i class="material-icons">add</i>
   </a>
 </div>
