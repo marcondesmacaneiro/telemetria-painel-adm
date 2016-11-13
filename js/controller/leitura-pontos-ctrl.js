@@ -76,7 +76,11 @@ function ($scope, $routeParams, $timeout, Page, ApiRequest, LeituraPontosApi, Ob
         showMessage('Ponto de leitura inserido');
       });
     }else{
-      ApiRequest.altera($scope.ponto._links.self.href, $scope.ponto).then(function() {
+      ApiRequest.altera($scope.ponto._links.self.href, {
+        nome        : $scope.ponto.nome,
+        endereco    : $scope.ponto.endereco,
+        localizacao : $scope.ponto.localizacao
+      }).then(function() {
         window.location = '#leiturapontos';
         showMessage('Ponto de leitura alterado');
       });
