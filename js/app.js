@@ -165,7 +165,5 @@ function aplicaMascaraTelefone(selector){
       field.mask(comportamentoMascara.apply({}, arguments), options);
     }
   };
-  if(typeof target.get(0).hasmask == 'undefined'){
-    target.mask(comportamentoMascara, options);
-  }
+  target.mask(comportamentoMascara, options);
 }
