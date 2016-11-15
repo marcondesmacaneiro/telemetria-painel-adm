@@ -18,6 +18,7 @@
           <th class="mdl-data-table__cell--non-numeric">Ativo</th>
           <th class="mdl-data-table__cell--non-numeric">Manual</th>
           <th class="mdl-data-table__cell--non-numeric">Sensor</th>
+          <th class="mdl-data-table__cell--non-numeric"></th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +34,12 @@
             </label>
           </td>
           <td class="mdl-data-table__cell--non-numeric">{{sensor.nomeSensor}}</td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <button class="mdl-button mdl-js-button mdl-button--icon" ng-show="sensor.manual" ng-click="mostraTelaRegistraLeitura(sensor);">
+              <i class="material-icons" id="ttaddleitura{{$parent.$index}}{{$index}}">add_circle_outline</i>
+              <div class="mdl-tooltip" data-mdl-for="ttaddleitura{{$parent.$index}}{{$index}}">Registrar Leitura</div>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -41,4 +48,21 @@
   <a ng-click="LeituraPontoObjectRoute.reset();" href="#leituraponto" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect floating-button">
     <i class="material-icons">add</i>
   </a>
+  <dialog class="mdl-dialog" id="inc-registro-leitura-dialog">
+    <h4 class="mdl-dialog__title">Registrar Leitura</h4>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="datahora" maxlength="20" ng-model="leitura.datahora">
+        <label class="mdl-textfield__label" for="datahora">Data/Hora</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="descricao" maxlength="19" ng-model="leitura.leitura">
+        <label class="mdl-textfield__label" for="descricao">Leitura</label>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">Fechar</button>
+      <button type="button" class="mdl-button close" ng-click="adicionaRegistroLeitura();">Confirmar</button>
+    </div>
+  </dialog>
 </div>

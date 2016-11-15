@@ -86,6 +86,7 @@ function($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi, AbrigoCont
     window.location = '#abrigos';
     return;
   }
+  aplicaMascaraTelefone('#telefone');
   var isAlteracao    = false;
   $scope.excDialogId = 'exc-abrigo-contato';
   $scope.contato     = {principal: false, abrigo: {id: idAbrigo}};

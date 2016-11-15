@@ -78,6 +78,7 @@ app.controller('contatoCtrl', ['$scope', 'ApiRequest', 'ContatoTelefoneApi', fun
   $scope.telefone       = {};
   $scope.telefones      = [];
 
+  aplicaMascaraTelefone('.telefone');
   $scope.sendRequest = function(contato){
     if(isEmpty($scope.telefone.numero)) return;
     if($scope.isNovoTelefone){

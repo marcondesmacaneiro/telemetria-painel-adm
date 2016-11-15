@@ -7,6 +7,22 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
   $scope.excDialogId = 'exc-pontoleitura';
   $scope.LeituraPontoObjectRoute = ObjectHandleRoute;
 
+  $scope.mostraTelaRegistraLeitura = function(sensor){
+    $scope.leitura = {sensor: sensor};
+    showDialog('inc-registro-leitura');
+    $('#datahora').mask('00/00/0000 00:00:00');
+  };
+  $scope.adicionaRegistroLeitura = function(){
+    var aDatahora = $scope.leitura.datahora.split('/');
+    var oDateIso  = new Date(aDatahora[1] + '/' + aDatahora[0] + '/' + aDatahora[2]);
+    ApiRequest.insere(LeituraPontosApi.getUrlLeituraSensor(), {
+      leitura  : $scope.leitura.leitura,
+      dataHora : oDateIso.toISOString().replace(/\..*$/, ''),
+      leituraPontoSensor : $scope.leitura.sensor._links.self.href
+    }).then(function(){
+      showMessage('Registro de leitura inserido')
+    });
+  };
   $scope.setObjectForDelete = function(ponto){
     $scope.objDelete = ponto;
     showDialog($scope.excDialogId);
@@ -48,6 +64,9 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
     },
     getUrl: function(){
       return "http://localhost:8080/leituraponto/";
+    },
+    getUrlLeituraSensor: function() {
+      return "http://localhost:8080/leiturasensor/";
     }
   };
 });

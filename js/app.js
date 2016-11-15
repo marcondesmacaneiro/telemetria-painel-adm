@@ -155,3 +155,17 @@ function hideLoadingSpinner(){
 function isEmpty(valor){
   return typeof valor == 'undefined' || valor.trim().length == 0;
 }
+function aplicaMascaraTelefone(selector){
+  var target = $(selector);
+  var comportamentoMascara = function (val) {
+    return val.replace(/\D/g, '').length === 11 ? '00 00000-0000' : '00 0000-00009';
+  },
+  options = {
+    onKeyPress: function(val, e, field, options) {
+      field.mask(comportamentoMascara.apply({}, arguments), options);
+    }
+  };
+  if(typeof target.get(0).hasmask == 'undefined'){
+    target.mask(comportamentoMascara, options);
+  }
+}
