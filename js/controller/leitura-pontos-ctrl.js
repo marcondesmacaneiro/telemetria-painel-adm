@@ -35,9 +35,9 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
     });
   };
   $scope.alteraSensor = function(ponto, sensor){
-    ApiRequest.altera(sensor._links.self.href, sensor).then(function(){
+    ApiRequest.altera(LeituraPontosApi.getUrlLeituraPontoSensor(sensor.id), sensor).then(function(){
       ApiRequest.busca(ponto._links.sensores.href).then(function(data){
-        ponto.sensores = data._embedded.leiturapontosensores;
+        ponto.sensores = data;
         atualizaElementos();
       });
     });
@@ -49,7 +49,7 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
       jQuery.each(pontos, function(){
         var pontoAtual = this;
         ApiRequest.busca(pontoAtual._links.sensores.href).then(function(data){
-          pontoAtual.sensores = data._embedded.leiturapontosensores;
+          pontoAtual.sensores = data;
           atualizaElementos();
         });
       });
@@ -67,6 +67,9 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
     },
     getUrlLeituraSensor: function() {
       return "http://localhost:8080/leiturasensor/";
+    },
+    getUrlLeituraPontoSensor: function(id) {
+      return "http://localhost:8080/leiturapontosensor/" + id;
     }
   };
 });
