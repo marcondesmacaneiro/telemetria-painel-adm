@@ -54,10 +54,14 @@ app.controller('mainCtrl', ['$scope', 'Page', function($scope, Page){
   $scope.Page = Page;
 }])
 .factory('ApiRequest', ['$q', '$http', function($q, $http){
+  function getUrl(url){
+    var sBaseUrl = "http://localhost:8080";
+    return sBaseUrl + url.replace(sBaseUrl, '');
+  }
   return {
     busca: function(url) {
       var promise = $q.defer();
-      $http.get(url).then(function(response){
+      $http.get(getUrl(url)).then(function(response){
         promise.resolve(response.data);
       }, function() {
         promise.reject();
@@ -65,13 +69,13 @@ app.controller('mainCtrl', ['$scope', 'Page', function($scope, Page){
       return promise.promise;
     },
     insere: function(url, data){
-      return $http.post(url, data);
+      return $http.post(getUrl(url), data);
     },
     altera: function(url, data){
-      return $http.patch(url, data);
+      return $http.patch(getUrl(url), data);
     },
     exclui: function(url){
-      return $http.delete(url);
+      return $http.delete(getUrl(url));
     }
   }
 }])

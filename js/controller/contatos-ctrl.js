@@ -66,10 +66,10 @@ app.controller("contatosCtrl", ['$scope', 'Page', 'ApiRequest', 'ContatosApi', f
 .factory('ContatosApi', function(){
   return {
     getUrlAll: function(){
-      return "http://localhost:8080/contatogeral/search/findAllByOrderByIdAsc/";
+      return "/contatogeral/search/findAllByOrderByIdAsc/";
     },
     getUrl: function(){
-      return "http://localhost:8080/contatogeral/";
+      return "/contatogeral/";
     }
   };
 });
@@ -111,7 +111,7 @@ app.controller('contatoCtrl', ['$scope', 'ApiRequest', 'ContatoTelefoneApi', fun
 .factory('ContatoTelefoneApi', function(){
   return {
     getUrl: function(){
-      return "http://localhost:8080/contatogeraltelefone/";
+      return "/contatogeraltelefone/";
     }
   };
 });

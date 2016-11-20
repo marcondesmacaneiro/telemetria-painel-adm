@@ -60,16 +60,16 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
 .factory('LeituraPontosApi', function(){
   return {
     getUrlAll: function(){
-      return "http://localhost:8080/leituraponto/search/findAllByOrderByIdAsc";
+      return "/leituraponto/search/findAllByOrderByIdAsc";
     },
     getUrl: function(){
-      return "http://localhost:8080/leituraponto/";
+      return "/leituraponto/";
     },
     getUrlLeituraSensor: function() {
-      return "http://localhost:8080/leiturasensor/";
+      return "/leiturasensor/";
     },
     getUrlLeituraPontoSensor: function(id) {
-      return "http://localhost:8080/leiturapontosensor/" + id;
+      return "/leiturapontosensor/" + id;
     }
   };
 });

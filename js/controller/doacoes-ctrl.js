@@ -28,10 +28,10 @@ function ($scope, Page, ApiRequest, DoacoesApi, ObjectHandleRoute) {
 .factory('DoacoesApi', function(){
   return {
     getUrlAll: function(){
-      return "http://localhost:8080/doacao/search/findAllByOrderByIdAsc/";
+      return "/doacao/search/findAllByOrderByIdAsc/";
     },
     getUrl: function(){
-      return "http://localhost:8080/doacao/";
+      return "/doacao/";
     }
   };
 });

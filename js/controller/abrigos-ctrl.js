@@ -75,7 +75,7 @@ function ($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi) {
   return {
     getUrl: function(abrigoId) {
       var id = abrigoId ? parseInt(abrigoId) : '';
-      return "http://localhost:8080/api/abrigo/" + id;
+      return "/api/abrigo/" + id;
     }
   };
 });
@@ -169,7 +169,7 @@ function($scope, $routeParams, $timeout, Page, ApiRequest, AbrigoApi, AbrigoCont
 .factory('AbrigoContatoApi', function(){
   return {
     getUrl: function(abrigoId){
-      return "http://localhost:8080/api/abrigo/" + abrigoId + "/contato/";
+      return "/api/abrigo/" + abrigoId + "/contato/";
     }
   };
 });
