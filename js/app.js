@@ -158,7 +158,11 @@ function isEmpty(valor){
 function aplicaMascaraTelefone(selector){
   var target = $(selector);
   var comportamentoMascara = function (val) {
-    return val.replace(/\D/g, '').length === 11 ? '00 00000-0000' : '00 0000-00009';
+    var iLengthVal = val.replace(/\D/g, '').length;
+    if(iLengthVal === 3){
+      return '00000000000';
+    }
+    return iLengthVal === 11 ? '00 00000-0000' : '00 0000-00000';
   },
   options = {
     onKeyPress: function(val, e, field, options) {
