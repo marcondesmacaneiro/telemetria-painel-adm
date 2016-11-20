@@ -8,8 +8,9 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
   $scope.LeituraPontoObjectRoute = ObjectHandleRoute;
 
   $scope.mostraTelaRegistraLeitura = function(sensor){
-    $scope.leitura = {sensor: sensor};
+    $scope.leitura = {sensor: sensor, datahora: (new Date).toLocaleString()};
     showDialog('inc-registro-leitura');
+    atualizaLabelCampos();
     $('#datahora').mask('00/00/0000 00:00:00');
   };
   $scope.adicionaRegistroLeitura = function(){
@@ -18,7 +19,7 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
     ApiRequest.insere(LeituraPontosApi.getUrlLeituraSensor(), {
       leitura  : $scope.leitura.leitura,
       dataHora : oDateIso.toISOString().replace(/\..*$/, ''),
-      leituraPontoSensor : $scope.leitura.sensor._links.self.href
+      leituraPontoSensor : LeituraPontosApi.getUrlLeituraPontoSensor($scope.leitura.sensor.id)
     }).then(function(){
       showMessage('Registro de leitura inserido')
     });
