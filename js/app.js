@@ -94,7 +94,7 @@ app.controller('mainCtrl', ['$scope', 'Page', function($scope, Page){
   };
 });
 function criaMapa(idContainer, callbackMarker, useGeolocation){
-  var defaultPosition = {lat: -57.213973, lng: -59.638101};
+  var defaultPosition = {lat: -27.21634374120536, lng: -49.64561848681069};
   var map = new google.maps.Map(document.getElementById(idContainer), {
     center : defaultPosition,
     zoom   : 14
