@@ -5,6 +5,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller  : 'leituraPontoCtrl',
     templateUrl : "pages/leitura-ponto.html"
   })
+  .when("/barragens/", {
+    controller  : 'barragensCtrl',
+    templateUrl : "pages/barragens.html"
+  })
+  .when("/barragem/", {
+    controller  : 'barragemCtrl',
+    templateUrl : "pages/barragem.html"
+  })
   .when("/abrigos", {
     controller  : 'abrigosCtrl',
     templateUrl : "pages/abrigos.html"
@@ -28,10 +36,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   .when("/contatos", {
     controller  : 'contatosCtrl',
     templateUrl : "pages/contatos.html"
-  })
-  .when("/usuarios", {
-    controller  : 'usuariosCtrl',
-    templateUrl : "pages/usuarios.html"
   })
   .otherwise({
     controller  : 'leituraPontosCtrl',

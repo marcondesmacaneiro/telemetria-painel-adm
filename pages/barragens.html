@@ -1,0 +1,58 @@
+<div>
+  <div class="inline-card" ng-repeat="barragem in barragens">
+    <div class="mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">{{barragem.nome}}</h2>
+      </div>
+      <div class="card-divider"></div>
+      <div class="mdl-card__supporting-text" style="height: 18px;">
+        Montante: {{barragem.ultimoHistorico.montante}} m
+      </div>
+      <div class="card-divider"></div>
+      <div class="mdl-card__supporting-text">
+        Comportas: {{barragem.ultimoHistorico.comportasAbertas}} Abertas / {{barragem.ultimoHistorico.comportasFechadas}} Fechadas
+      </div>
+      <div class="card-divider"></div>
+      <div class="mdl-card__supporting-text">
+        Última Leitura: {{barragem.ultimoHistorico.dataHoraFormatada}}
+      </div>
+      <div class="mdl-card__menu">
+        <button id="menu-abrigo{{barragem.id}}" class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-abrigo{{barragem.id}}">
+          <li><a ng-click="BarragemObjectRoute.set(barragem);" class="mdl-menu__item" href="#barragem">Alterar</a></li>
+          <li class="mdl-menu__item" ng-click="setObjectForDelete(barragem);">Excluir</li>
+        </ul>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="mostraTelaRegistraLeitura(barragem);">Registrar Leitura</a>
+      </div>
+    </div>
+  </div>
+  <span ng-include="'pages/include/exclusao-dialog.html'"></span>
+  <a ng-click="BarragemObjectRoute.reset();" href="#barragem" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect floating-button">
+    <i class="material-icons">add</i>
+  </a>
+  <dialog class="mdl-dialog" id="inc-barragem-leitura-dialog">
+    <h4 class="mdl-dialog__title">Registrar Leitura</h4>
+    <div class="mdl-dialog__content">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="datahora" maxlength="20" ng-model="historico.datahora">
+        <label class="mdl-textfield__label" for="datahora">Data/Hora</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="montante" maxlength="19" ng-model="historico.montante">
+        <label class="mdl-textfield__label" for="montante">Montante</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" id="comportas" ng-model="historico.comportas">
+        <label class="mdl-textfield__label" for="comportas">Comportas Abertas/Fechadas</label>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">Fechar</button>
+      <button type="button" class="mdl-button close" ng-click="adicionaRegistroLeitura();">Confirmar</button>
+    </div>
+  </dialog>
+</div>
