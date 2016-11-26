@@ -14,7 +14,7 @@
       </div>
       <div class="card-divider"></div>
       <div class="mdl-card__supporting-text">
-        Última Leitura: {{barragem.ultimoHistorico.dataHoraFormatada}}
+        Última Mudança: {{barragem.ultimoHistorico.dataHoraFormatada}}
       </div>
       <div class="mdl-card__menu">
         <button id="menu-abrigo{{barragem.id}}" class="mdl-button mdl-js-button mdl-button--icon">
@@ -26,7 +26,7 @@
         </ul>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="mostraTelaRegistraLeitura(barragem);">Registrar Leitura</a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="mostraTelaRegistraMudanca(barragem);">Registrar Mudança</a>
       </div>
     </div>
   </div>
@@ -34,8 +34,8 @@
   <a ng-click="BarragemObjectRoute.reset();" href="#barragem" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect floating-button">
     <i class="material-icons">add</i>
   </a>
-  <dialog class="mdl-dialog" id="inc-barragem-leitura-dialog">
-    <h4 class="mdl-dialog__title">Registrar Leitura</h4>
+  <dialog class="mdl-dialog" id="inc-mudanca-dialog">
+    <h4 class="mdl-dialog__title">Registrar Mudança</h4>
     <div class="mdl-dialog__content">
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" id="datahora" maxlength="20" ng-model="historico.datahora">
@@ -52,7 +52,7 @@
     </div>
     <div class="mdl-dialog__actions">
       <button type="button" class="mdl-button close">Fechar</button>
-      <button type="button" class="mdl-button close" ng-click="adicionaRegistroLeitura();">Confirmar</button>
+      <button type="button" class="mdl-button close" ng-click="adicionaRegistroMudanca();">Confirmar</button>
     </div>
   </dialog>
 </div>

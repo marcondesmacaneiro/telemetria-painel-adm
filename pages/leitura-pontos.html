@@ -33,7 +33,7 @@
               <input type="checkbox" id="manual{{$parent.$index}}{{$index}}" class="mdl-checkbox__input" ng-disabled="!sensor.ativo" ng-model="sensor.manual" ng-click="alteraSensor(ponto, sensor);" ng-checked="sensor.manual">
             </label>
           </td>
-          <td class="mdl-data-table__cell--non-numeric">{{sensor.nomeSensor}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{sensor.nomeSensor}}<br>{{sensor.ultimaLeitura}}</td>
           <td class="mdl-data-table__cell--non-numeric">
             <button class="mdl-button mdl-js-button mdl-button--icon" ng-show="sensor.manual" ng-click="mostraTelaRegistraLeitura(sensor);">
               <i class="material-icons" id="ttaddleitura{{$parent.$index}}{{$index}}">add_circle_outline</i>

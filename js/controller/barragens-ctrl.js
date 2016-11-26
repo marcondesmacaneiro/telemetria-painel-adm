@@ -7,14 +7,14 @@ function ($scope, Page, ApiRequest, BarragensApi, ObjectHandleRoute) {
   $scope.excDialogId = 'exc-barragem';
   $scope.BarragemObjectRoute = ObjectHandleRoute;
 
-  $scope.mostraTelaRegistraLeitura = function(barragem){
+  $scope.mostraTelaRegistraMudanca = function(barragem){
     $scope.historico = {barragem: barragem, datahora: (new Date).toLocaleString()};
-    showDialog('inc-barragem-leitura');
+    showDialog('inc-mudanca');
     atualizaLabelCampos();
     $('#datahora').mask('00/00/0000 00:00:00');
     $('#comportas').mask('00/00');
   };
-  $scope.adicionaRegistroLeitura = function(){
+  $scope.adicionaRegistroMudanca = function(){
     var aDatahora = $scope.historico.datahora.split('/');
     var oDateIso  = new Date(aDatahora[1] + '/' + aDatahora[0] + '/' + aDatahora[2]);
     var comportas = $scope.historico.comportas.split('/');
@@ -25,7 +25,7 @@ function ($scope, Page, ApiRequest, BarragensApi, ObjectHandleRoute) {
       comportasAbertas  : comportas[0],
       comportasFechadas : comportas[1]
     }).then(function(){
-      showMessage('Registro de leitura inserido');
+      showMessage('Registro de mudança inserido');
       refresh();
     });
   };
