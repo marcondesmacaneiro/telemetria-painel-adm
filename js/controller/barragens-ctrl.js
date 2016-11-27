@@ -15,11 +15,9 @@ function ($scope, Page, ApiRequest, BarragensApi, ObjectHandleRoute) {
     $('#comportas').mask('00/00');
   };
   $scope.adicionaRegistroMudanca = function(){
-    var aDatahora = $scope.historico.datahora.split('/');
-    var oDateIso  = new Date(aDatahora[1] + '/' + aDatahora[0] + '/' + aDatahora[2]);
     var comportas = $scope.historico.comportas.split('/');
     ApiRequest.insere(BarragensApi.getUrlHistorico(), {
-      dataHora : oDateIso.toISOString().replace(/\..*$/, ''),
+      dataHora : getDataIso($scope.historico.datahora),
       montante : $scope.historico.montante,
       barragem : BarragensApi.getUrl() + $scope.historico.barragem.id,
       comportasAbertas  : comportas[0],

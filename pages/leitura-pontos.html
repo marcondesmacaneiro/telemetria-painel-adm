@@ -35,7 +35,7 @@
           </td>
           <td class="mdl-data-table__cell--non-numeric">{{sensor.nomeSensor}}<br>{{sensor.ultimaLeitura}}</td>
           <td class="mdl-data-table__cell--non-numeric">
-            <button class="mdl-button mdl-js-button mdl-button--icon" ng-show="sensor.manual" ng-click="mostraTelaRegistraLeitura(sensor);">
+            <button class="mdl-button mdl-js-button mdl-button--icon" ng-show="sensor.manual" ng-click="mostraTelaRegistraLeitura(ponto, sensor);">
               <i class="material-icons" id="ttaddleitura{{$parent.$index}}{{$index}}">add_circle_outline</i>
               <div class="mdl-tooltip" data-mdl-for="ttaddleitura{{$parent.$index}}{{$index}}">Registrar Leitura</div>
             </button>

@@ -59,7 +59,7 @@ app.controller('mainCtrl', ['$scope', 'Page', function($scope, Page){
 }])
 .factory('ApiRequest', ['$q', '$http', function($q, $http){
   function getUrl(url){
-    var sBaseUrl = "http://localhost:8080";
+    var sBaseUrl = "https://telemetria-rest.herokuapp.com";
     return sBaseUrl + url.replace(sBaseUrl, '');
   }
   return {
@@ -178,4 +178,10 @@ function aplicaMascaraTelefone(selector){
     }
   };
   target.mask(comportamentoMascara, options);
+}
+function getDataIso(data){
+  var datahora = data.split('/');
+  var dataIso  = new Date(datahora[1] + '/' + datahora[0] + '/' + datahora[2]);
+  var tzoffset = (new Date()).getTimezoneOffset() * 60000;
+  return new Date(dataIso.getTime() - tzoffset).toISOString().replace(/\..*$/, '');
 }

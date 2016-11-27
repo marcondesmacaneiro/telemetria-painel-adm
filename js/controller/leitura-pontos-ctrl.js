@@ -7,21 +7,23 @@ function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandle
   $scope.excDialogId = 'exc-pontoleitura';
   $scope.LeituraPontoObjectRoute = ObjectHandleRoute;
 
-  $scope.mostraTelaRegistraLeitura = function(sensor){
-    $scope.leitura = {sensor: sensor, datahora: (new Date).toLocaleString()};
+  $scope.mostraTelaRegistraLeitura = function(ponto, sensor){
+    $scope.leitura = {ponto: ponto, sensor: sensor, datahora: (new Date).toLocaleString()};
     showDialog('inc-registro-leitura');
     atualizaLabelCampos();
     $('#datahora').mask('00/00/0000 00:00:00');
   };
   $scope.adicionaRegistroLeitura = function(){
-    var aDatahora = $scope.leitura.datahora.split('/');
-    var oDateIso  = new Date(aDatahora[1] + '/' + aDatahora[0] + '/' + aDatahora[2]);
     ApiRequest.insere(LeituraPontosApi.getUrlLeituraSensor(), {
       leitura  : $scope.leitura.leitura,
-      dataHora : oDateIso.toISOString().replace(/\..*$/, ''),
+      dataHora : getDataIso($scope.leitura.datahora),
       leituraPontoSensor : LeituraPontosApi.getUrlLeituraPontoSensor($scope.leitura.sensor.id)
     }).then(function(){
-      showMessage('Registro de leitura inserido')
+      showMessage('Registro de leitura inserido');
+      ApiRequest.busca($scope.leitura.ponto._links.sensores.href).then(function(data){
+        $scope.leitura.ponto.sensores = data;
+        atualizaElementos();
+      });
     });
   };
   $scope.setObjectForDelete = function(ponto){
