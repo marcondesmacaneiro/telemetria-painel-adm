@@ -1,6 +1,10 @@
 var app = angular.module("PainelAdm", ["ngRoute"]);
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider
+  .when("/leiturapontos/", {
+    controller  : 'leituraPontosCtrl',
+    templateUrl : "pages/leitura-pontos.html"
+  })
   .when("/leituraponto/", {
     controller  : 'leituraPontoCtrl',
     templateUrl : "pages/leitura-ponto.html"
@@ -13,7 +17,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller  : 'barragemCtrl',
     templateUrl : "pages/barragem.html"
   })
-  .when("/abrigos", {
+  .when("/abrigos/", {
     controller  : 'abrigosCtrl',
     templateUrl : "pages/abrigos.html"
   })
@@ -25,7 +29,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller  : 'abrigoContatoCtrl',
     templateUrl : "pages/abrigo-contato.html"
   })
-  .when("/doacoes", {
+  .when("/doacoes/", {
     controller  : 'doacoesCtrl',
     templateUrl : "pages/doacoes.html"
   })
@@ -33,7 +37,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller  : 'doacaoCtrl',
     templateUrl : "pages/doacao.html"
   })
-  .when("/contatos", {
+  .when("/contatos/", {
     controller  : 'contatosCtrl',
     templateUrl : "pages/contatos.html"
   })

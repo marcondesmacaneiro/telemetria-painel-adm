@@ -1,4 +1,3 @@
-var app = angular.module("PainelAdm");
 app.controller("leituraPontosCtrl", ['$scope', '$routeParams', 'Page', 'ApiRequest', 'LeituraPontosApi', 'ObjectHandleRoute',
 function ($scope, $routeParams, Page, ApiRequest, LeituraPontosApi, ObjectHandleRoute) {
   Page.setTitle('Pontos de Leitura');

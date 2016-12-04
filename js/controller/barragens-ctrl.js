@@ -1,4 +1,3 @@
-var app = angular.module("PainelAdm");
 app.controller("barragensCtrl", ['$scope', 'Page', 'ApiRequest', 'BarragensApi', 'ObjectHandleRoute',
 function ($scope, Page, ApiRequest, BarragensApi, ObjectHandleRoute) {
   Page.setTitle('Barragens');

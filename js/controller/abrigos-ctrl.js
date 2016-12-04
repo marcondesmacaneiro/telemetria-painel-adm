@@ -1,4 +1,3 @@
-var app = angular.module("PainelAdm");
 app.controller("abrigosCtrl", ['$scope', '$timeout', 'Page', 'ApiRequest', 'AbrigoApi',
 function ($scope, $timeout, Page, ApiRequest, AbrigoApi) {
   Page.setTitle('Abrigos');

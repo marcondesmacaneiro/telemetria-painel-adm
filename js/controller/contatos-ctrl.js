@@ -1,4 +1,3 @@
-var app = angular.module("PainelAdm");
 app.controller("contatosCtrl", ['$scope', 'Page', 'ApiRequest', 'ContatosApi', function ($scope, Page, ApiRequest, ContatosApi) {
   Page.setTitle('Contatos Gerais');
   $scope.isCadastro  = true;

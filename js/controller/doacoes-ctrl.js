@@ -1,4 +1,3 @@
-var app = angular.module("PainelAdm");
 app.controller("doacoesCtrl", ['$scope', 'Page', 'ApiRequest', 'DoacoesApi', 'ObjectHandleRoute',
 function ($scope, Page, ApiRequest, DoacoesApi, ObjectHandleRoute) {
   Page.setTitle('Doações');
